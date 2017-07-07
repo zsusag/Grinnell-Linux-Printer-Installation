@@ -1,0 +1,70 @@
+# Emacs: This is a -*- Shell-script -*-
+
+# After installing the Papercut software on a GNU/Linux
+# workstation, this script installs and configures the desired
+# printers on the Grinnell College network.
+# Note: This script needs to be run by the root user as
+#       adding printers in CUPS needs to be done by and
+#       administrator.
+
+# Zachary John Susag
+# Department of Computer Science
+# Grinnell College
+# susagzac@grinnell.edu
+# https://zacharysusag.com
+
+# Created: July 7, 2017
+# Last Revised: July 7, 2017
+
+# -------------
+# Preconditions
+# -------------
+
+# Exit unless the user has provded at least one printer
+# to be installed.
+
+if [ -z "$1" ]
+then
+    echo "install_grinnell_printer [printer_name(s)]"
+    exit 1
+fi
+
+# Check to see if the script is being run as root.
+
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root in order to work properly." 
+   exit 1
+fi
+
+# Retreive the directory name of the Git repo and construct
+# the filepath of the csv listing all of Grinnell College's
+# printers.
+
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+csv="$dir"
+csv+="/grinnell_printers.csv"
+
+# ------------
+# Installation
+# ------------
+
+# Loop through each printer that the user would like installed
+# and check to see if it is a valid name. If so, install the printer.
+# If not, notify the user that the printer does not exist and
+# exit the program.
+
+for printer in "$@"
+do
+    location="$(grep $printer $csv | cut -d, -f2)"
+    if [ -n $location ]
+    then
+        echo "Setting up $printer"
+        uri="ipp://linprint.grinnell.edu/printers/"
+        uri+="$printer"
+        lpadmin -p $printer -E -v $uri -o Duplex=DuplexNoTumble -m everywhere -L $location
+    else
+        echo "$printer does not exist on the Grinnell Network."
+        echo "If you believe this to be in error, contact susagzac@grinnell.edu."
+        exit 1
+    fi
+done

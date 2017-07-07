@@ -12,7 +12,7 @@
 # https://zacharysusag.com
 
 # Created: July 6, 2017
-# Last revised: July  6, 2017
+# Last revised: July 7, 2017
 
 # Check to see if the script is run as root.
 if [[ $EUID -ne 0 ]]; then
@@ -25,8 +25,8 @@ echo "Creating the papercut user and group."
 useradd -rU papercut
 
 # Echo the newly created UID and GID.
-papercut_uid=id -u papercut
-papercut_gid=id -G papercut
+papercut_uid="$(id -u papercut)"
+papercut_gid="$(id -G papercut)"
 echo "UID: $papercut_uid"
 echo "GID: $papercut_gid"
 
