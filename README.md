@@ -77,3 +77,6 @@ will not be submitted to Grinnell College's print servers.
 license. Contact [susagzac@grinnell.edu](mailto:susagzac@grinnell.edu) with any
 questions about licensing.
 
+I do not claim to own any part of Papercut or take credit for it. It is simply
+necessary for the correct operation of this program and required for student
+printing at Grinnell College.
