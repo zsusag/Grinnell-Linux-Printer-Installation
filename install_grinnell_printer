@@ -55,13 +55,15 @@ csv+="/grinnell_printers.csv"
 
 for printer in "$@"
 do
-    location="$(grep $printer $csv | cut -d, -f2)"
-    if [ -n $location ]
+    printer_lowercase="${printer,,}"
+    location="$(grep $printer_lowercase $csv | cut -d, -f2)"
+    if [ -n "$location" ]
     then
         echo "Setting up $printer"
         uri="ipp://linprint.grinnell.edu/printers/"
         uri+="$printer"
-        lpadmin -p $printer -E -v $uri -o Duplex=DuplexNoTumble -m everywhere -L $location
+        lpadmin -p "$printer" -E -v "$uri" -o Duplex=DuplexNoTumble -m everywhere -L "$location"
+        echo "$printer set up!"
     else
         echo "$printer does not exist on the Grinnell Network."
         echo "If you believe this to be in error, contact susagzac@grinnell.edu."
