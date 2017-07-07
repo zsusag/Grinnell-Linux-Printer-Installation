@@ -1,0 +1,53 @@
+# Emacs: This is a -*- Shell-script -*-.
+
+# This script sets up Papercut on a GNU/Linux machine.
+# Note: This script needs to be run by the root user as
+#       the script will create a new user and add a symbolic
+#       file inside /usr/bin.
+
+# Zachary John Susag
+# Department of Computer Science
+# Grinnell College
+# susagzac@grinnell.edu
+# https://zacharysusag.com
+
+# Created: July 6, 2017
+# Last revised: July  6, 2017
+
+# Check to see if the script is run as root.
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root in order to work properly." 
+   exit 1
+fi
+
+# Create the papercut user and group.
+echo "Creating the papercut user and group."
+useradd -rU papercut
+
+# Echo the newly created UID and GID.
+papercut_uid=id -u papercut
+papercut_gid=id -G papercut
+echo "UID: $papercut_uid"
+echo "GID: $papercut_gid"
+
+# Copy the papercut source onto the local machine.
+echo "Copying Papercut source files onto local machine."
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+dir+="/papercut"
+cp -r $dir /opt/
+
+# Change ownership of copied directory and subfiles to papercut.
+echo "Changing ownership of copied files to papercut."
+chown -R papercut:papercut /opt/papercut
+
+# Change file permissions for /opt/papercut and subfiles and directories.
+echo "Changing permissions to 755 for /opt/papercut"
+chmod -R 755 /opt/papercut
+
+# Create symbolic link within /usr/bin for starting papercut.
+ln -s /opt/papercut/pc-client-linux.sh /usr/bin/papercut
+chmod 777 /usr/bin/papercut
+
+# Tell user that papercut has been successfully installed and how to use it.
+echo "Papercut was successfuly installed."
+echo "To use Papercut, simply type /usr/bin/papercut into a terminal."
