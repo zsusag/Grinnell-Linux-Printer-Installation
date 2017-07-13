@@ -11,6 +11,7 @@ scripts: `install_papercut` and `install_grinnell_printer`. See below for usage
 information.
 
 **GC-LPI** also provides the necessary files in order to
+<<<<<<< HEAD
 install [PaperCut](https://www.papercut.com/) on the system. All files within
 the `papercut/` directory are not created by the author (Zachary J. Susag) and
 so holds no claim to anything within. Configuration of PaperCut to work with
@@ -43,6 +44,7 @@ Simply run the following command while within the cloned repository:
 sudo ./install_papercut
 ```
 The script will automatically copy over the necessary files and configure
+<<<<<<< HEAD
 PaperCut to work with your system. It will create a new user as PaperCut
 requires the script it uses to run to be owned under a separate, `papercut`,
 user.
