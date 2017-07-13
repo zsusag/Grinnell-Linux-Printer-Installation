@@ -2,7 +2,7 @@
 
 # This file is part of GC-LPI. 
 
-# Foobar is free software: you can redistribute it and/or modify
+# GC-LPI is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
@@ -28,7 +28,7 @@
 # https://zacharysusag.com
 
 # Created: July 6, 2017
-# Last revised: July 7, 2017
+# Last revised: July 12, 2017
 
 # Check to see if the script is run as root.
 if [[ $EUID -ne 0 ]]; then
@@ -51,6 +51,12 @@ echo "Copying Papercut source files onto local machine."
 dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 dir+="/papercut"
 cp -r $dir /opt/
+
+# Prompt the user to enter in his/her/their username in order
+# to connect to Grinnell College's Samba server.
+#echo -n "Enter in your Grinnell College username followed by [ENTER]: "
+#read username
+# smbclient //print/PCClient -W grin -U $username 'prompt OFF;recurse ON;lcd '/opt/papercut';mget *'
 
 # Change ownership of copied directory and subfiles to papercut.
 echo "Changing ownership of copied files to papercut."
