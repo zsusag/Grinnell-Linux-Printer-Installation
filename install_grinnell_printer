@@ -16,7 +16,7 @@
 # along with GC-LPI.  If not, see <http://www.gnu.org/licenses/>.
 
 
-# After installing the Papercut software on a GNU/Linux
+# After installing the PaperCut software on a GNU/Linux
 # workstation, this script installs and configures the desired
 # printers on the Grinnell College network.
 # Note: This script needs to be run by the root user as
@@ -30,7 +30,7 @@
 # https://zacharysusag.com
 
 # Created: July 7, 2017
-# Last Revised: July 12, 2017
+# Last Revised: July 13, 2017
 
 # -------------
 # Preconditions

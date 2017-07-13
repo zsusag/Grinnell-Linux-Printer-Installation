@@ -46,12 +46,12 @@ papercut_gid="$(id -G papercut)"
 echo "UID: $papercut_uid"
 echo "GID: $papercut_gid"
 
-# Create the local directory in which Papercut files will be stored.
+# Create the local directory in which PaperCut files will be stored.
 mkdir /opt/papercut
 
 # Prompt the user to enter in his/her/their username in order
 # to connect to Grinnell College's Samba server.
-echo "Retrieving and copying Papercut source files "
+echo "Retrieving and copying PaperCut source files "
 echo -n "Enter in your Grinnell College username followed by [ENTER]: "
 read username
 
