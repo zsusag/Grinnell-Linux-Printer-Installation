@@ -25,6 +25,11 @@ on be connected to the Grinnell College network for connection
 purposes. `install_papercut` will retrieve the files needed to install PaperCut
 from Grinnell College servers, which can only be accessed on the LAN.
 
+**GC-LPI** requires that SAMBA is installed, specifically to use `smbclient` in
+order to get the PaperCut files off of the Grinnell College network.
+
+PaperCut requires that `Java` be installed.
+
 PaperCut cannot connect to any of the printers unless the workstation is
 connected to the Grinnell College network. Furthermore, it will not work if a
 virtual private network (VPN) is in use. In order to print you must disable your
