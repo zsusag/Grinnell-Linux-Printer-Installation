@@ -28,7 +28,7 @@
 # https://zacharysusag.com
 
 # Created: July 6, 2017
-# Last revised: July 12, 2017
+# Last revised: July 13, 2017
 
 # Check to see if the script is run as root.
 if [[ $EUID -ne 0 ]]; then
@@ -46,17 +46,22 @@ papercut_gid="$(id -G papercut)"
 echo "UID: $papercut_uid"
 echo "GID: $papercut_gid"
 
-# Copy the papercut source onto the local machine.
-echo "Copying Papercut source files onto local machine."
-dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-dir+="/papercut"
-cp -r $dir /opt/
+# Create the local directory in which Papercut files will be stored.
+mkdir /opt/papercut
 
 # Prompt the user to enter in his/her/their username in order
 # to connect to Grinnell College's Samba server.
-#echo -n "Enter in your Grinnell College username followed by [ENTER]: "
-#read username
-# smbclient //print/PCClient -W grin -U $username 'prompt OFF;recurse ON;lcd '/opt/papercut';mget *'
+echo "Retrieving and copying Papercut source files "
+echo -n "Enter in your Grinnell College username followed by [ENTER]: "
+read username
+
+# Connect to Grinnell College's print server and download the 'linux'
+# directory.
+smbclient \\\\print\\PCClient -U $username -W Grin -c 'prompt OFF;recurse ON;cd 'linux';lcd '/opt/papercut';mget *'
+
+# Update the pc-client-linux.sh file to reflect the current
+# location the script is in.
+sed -i -e 's/`dirname $0`/\/opt\/papercut/g' /opt/papercut/pc-client-linux.sh
 
 # Change ownership of copied directory and subfiles to papercut.
 echo "Changing ownership of copied files to papercut."
