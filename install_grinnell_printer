@@ -77,9 +77,10 @@ do
     if [ -n "$location" ]
     then
         echo "Setting up $printer"
-        uri="ipp://linprint.grinnell.edu/printers/"
-        uri+="$printer"
-        lpadmin -p "$printer" -E -v "$uri" -o Duplex=DuplexNoTumble -m everywhere -L "$location"
+#        uri="ipp://linprint.grinnell.edu:631/printers/"
+        uri="lpd://print/"
+        uri+="$printer_lowercase"
+        lpadmin -p "$printer" -E -v "$uri" -o Duplex=DuplexNoTumble -L "$location" -m "drv:///sample.drv/laserjet.ppd"
         echo "$printer set up!"
     else
         echo "$printer does not exist on the Grinnell Network."
