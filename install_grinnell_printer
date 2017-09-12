@@ -30,7 +30,7 @@
 # https://zacharysusag.com
 
 # Created: July 7, 2017
-# Last Revised: July 13, 2017
+# Last Revised: September 12, 2017
 
 
 # -------------
@@ -77,10 +77,9 @@ do
     if [ -n "$location" ]
     then
         echo "Setting up $printer"
-#        uri="ipp://linprint.grinnell.edu:631/printers/"
-        uri="lpd://print/"
+        uri="ipp://linprint.grinnell.edu:631/printers/"
         uri+="$printer_lowercase"
-        lpadmin -p "$printer" -E -v "$uri" -o Duplex=DuplexNoTumble -L "$location" -m "drv:///sample.drv/laserjet.ppd"
+        lpadmin -p "$printer" -E -v "$uri" -o Duplex=DuplexNoTumble -L "$location" -m "everywhere"
         echo "$printer set up!"
     else
         echo "$printer does not exist on the Grinnell Network."
