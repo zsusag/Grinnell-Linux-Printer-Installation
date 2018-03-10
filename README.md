@@ -2,7 +2,7 @@
 
 Created by Zachary John Susag.
 
-Copyright (C) 2017,2018 Zachary John Susag
+Copyright (C) 2017, 2018 Zachary John Susag
 
 ## About
 **GC-LPI** contains the materials needed to get printers on the Grinnell College
@@ -87,4 +87,3 @@ questions about licensing.
 I do not claim to own any part of PaperCut or take credit for it. It is simply
 necessary for the correct operation of this program and required for student
 printing at Grinnell College.
-xs
