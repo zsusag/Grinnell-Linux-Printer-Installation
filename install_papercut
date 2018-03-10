@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Emacs: This is a -*- Shell-script -*-.
 
 # This file is part of GC-LPI. 
@@ -25,10 +27,9 @@
 # Department of Computer Science
 # Grinnell College
 # susagzac@grinnell.edu
-# https://zacharysusag.com
 
 # Created: July 6, 2017
-# Last revised: July 13, 2017
+# Last revised: March 9, 2018
 
 # Check to see if the script is run as root.
 if [[ $EUID -ne 0 ]]; then

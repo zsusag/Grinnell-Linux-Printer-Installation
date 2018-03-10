@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # Emacs: This is a -*- Shell-script -*-
 
 # This file is part of GC-LPI. 
@@ -27,10 +29,9 @@
 # Department of Computer Science
 # Grinnell College
 # susagzac@grinnell.edu
-# https://zacharysusag.com
 
 # Created: July 7, 2017
-# Last Revised: September 12, 2017
+# Last Revised: March 9, 2018
 
 
 # -------------
